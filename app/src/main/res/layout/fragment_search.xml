@@ -7,6 +7,7 @@
     <EditText
         android:id="@+id/searchText"
         android:hint="@string/search_hint"
+        android:imeOptions="actionSearch"
         style="@style/searchTextStyle" />
 
     <ListView

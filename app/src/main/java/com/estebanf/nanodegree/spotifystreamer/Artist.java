@@ -39,6 +39,10 @@ public class Artist {
         this.image = image;
     }
 
+    public boolean hasThumb(){
+        return image != null;
+    }
+
     public static ArrayList<Artist> search(String term){
         // Create the results array. We'll return an empty array in case of no results or bad data
         ArrayList<Artist> results = new ArrayList<>();
