@@ -13,21 +13,19 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-class ArtistListAdapter extends ArrayAdapter<Artist> {
+class ResultListAdapter extends ArrayAdapter<IItemResult> {
     private int mResource;
     private Context mContext;
-//    private List<Artist> artists;
-    public ArtistListAdapter(Context context, int resource, List<Artist> objects) {
+    public ResultListAdapter(Context context, int resource, List<IItemResult> objects) {
         super(context, resource, objects);
         mResource = resource;
         mContext = context;
-//        artists = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout layout;
-        Artist artist = getItem(position);
+        IItemResult result = getItem(position);
         if(convertView == null){
             layout = new LinearLayout(getContext());
             ((LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
@@ -36,9 +34,9 @@ class ArtistListAdapter extends ArrayAdapter<Artist> {
         else{
             layout = (LinearLayout)convertView;
         }
-        ((TextView)layout.findViewById(R.id.textView)).setText(artist.getName());
-        if(artist.hasThumb()){
-            Picasso.with(mContext).load(artist.getImage()).into(((ImageView)layout.findViewById(R.id.imageView)));
+        ((TextView)layout.findViewById(R.id.textView)).setText(result.getText());
+        if(result.hasThumb()){
+            Picasso.with(mContext).load(result.getThumb()).into(((ImageView)layout.findViewById(R.id.imageView)));
         }
         return layout;
     }

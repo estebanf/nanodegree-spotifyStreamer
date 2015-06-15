@@ -1,46 +1,44 @@
 package com.estebanf.nanodegree.spotifystreamer;
 
+import android.util.ArrayMap;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.ArtistsPager;
-import kaaes.spotify.webapi.android.models.Image;
+import kaaes.spotify.webapi.android.models.Tracks;
 
 /**
  * Wrap the spotify artist model and search utilities
  */
-public class Artist {
-    private String name;
-    private String spotifyId;
-    private String image;
+public class Artist extends BaseItemResult implements Serializable, IItemResult{
 
-    public String getName() {
-        return name;
+    private ArrayList<Track> topTracks;
+
+    public ArrayList<Track> getTopTracks() {
+        return topTracks;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String getText() {
+        return getName();
     }
 
-    public String getSpotifyId() {
-        return spotifyId;
+    @Override
+    public String getThumb() {
+        return getImage();
     }
 
-    public void setSpotifyId(String spotifyId) {
-        this.spotifyId = spotifyId;
+    @Override
+    public Boolean hasThumb() {
+        return hasImage();
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public boolean hasThumb(){
-        return image != null;
+    public Artist(){
+        topTracks = new ArrayList<>();
     }
 
     public static ArrayList<Artist> search(String term){
@@ -55,32 +53,31 @@ public class Artist {
                 Artist artist = new Artist();
                 artist.setName(item.name);
                 artist.setSpotifyId(item.id);
-                if(item.images != null  && item.images.size() > 0){
-                    if(item.images.size() == 1){
-                        artist.setImage(item.images.get(0).url);
-                    }
-                    else{
-                        // Find the image with the smallest difference with target width
-                        int targetWidth = 200;
-                        int minPos = 0;
-                        int minDifference = Integer.MAX_VALUE;
-                        for(int j = 0; j < item.images.size(); j++){
-                            Image img =  item.images.get(j);
-                            int difference = Math.abs(targetWidth - img.width);
-                            if(difference <= minDifference){
-                                minDifference = difference;
-                                minPos=j;
-                            }
-                            if(minDifference == 0){
-                                break;
-                            }
-                        }
-                        artist.setImage(item.images.get(minPos).url);
-                    }
-                }
+                artist.setImage(artist.findImage(item.images));
                 results.add(artist);
             }
         }
         return results;
+    }
+
+    public boolean loadTopTracks() {
+
+        SpotifyService service = new SpotifyApi().getService();
+        ArrayMap<String,Object> queryString = new ArrayMap<>();
+        queryString.put("country","US");
+
+        Tracks results = service.getArtistTopTrack(spotifyId,queryString);
+        if (results == null || results.tracks.size() == 0){
+            return false;
+        }
+        for(kaaes.spotify.webapi.android.models.Track track : results.tracks){
+            Track t = new Track();
+            t.setName(track.name);
+            t.setSpotifyId(track.id);
+            t.setImage(findImage(track.album.images));
+            t.setUrl(track.preview_url);
+            topTracks.add(t);
+        }
+        return true;
     }
 }
