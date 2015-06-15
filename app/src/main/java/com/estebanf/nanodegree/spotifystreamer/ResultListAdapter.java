@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.estebanf.nanodegree.spotifystreamer.models.IItemResult;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,7 +37,7 @@ class ResultListAdapter extends ArrayAdapter<IItemResult> {
         }
         ((TextView)layout.findViewById(R.id.textView)).setText(result.getText());
         if(result.hasThumb()){
-            Picasso.with(mContext).load(result.getThumb()).into(((ImageView)layout.findViewById(R.id.imageView)));
+            Picasso.with(mContext).load(result.getThumb()).into(((ImageView) layout.findViewById(R.id.imageView)));
         }
         return layout;
     }

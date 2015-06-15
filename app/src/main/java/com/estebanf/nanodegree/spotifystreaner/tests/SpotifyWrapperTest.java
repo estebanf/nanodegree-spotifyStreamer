@@ -2,7 +2,7 @@ package com.estebanf.nanodegree.spotifystreaner.tests;
 
 import android.test.InstrumentationTestCase;
 
-import com.estebanf.nanodegree.spotifystreamer.Artist;
+import com.estebanf.nanodegree.spotifystreamer.models.Artist;
 
 import java.util.List;
 

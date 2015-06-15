@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.estebanf.nanodegree.spotifystreamer.models.Artist;
+import com.estebanf.nanodegree.spotifystreamer.models.IItemResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,6 @@ public class SearchActivityFragment extends Fragment {
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("spotifystreamer",Integer.toString(position));
                 Artist currentArtist = (Artist)adapter.getItem(position);
                 AsyncLoadTopTracksTask topTracksTask = new AsyncLoadTopTracksTask();
                 topTracksTask.execute(currentArtist);

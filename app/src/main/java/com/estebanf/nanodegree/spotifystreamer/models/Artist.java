@@ -1,9 +1,10 @@
-package com.estebanf.nanodegree.spotifystreamer;
+package com.estebanf.nanodegree.spotifystreamer.models;
 
 import android.util.ArrayMap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
@@ -19,6 +20,13 @@ public class Artist extends BaseItemResult implements Serializable, IItemResult{
 
     public ArrayList<Track> getTopTracks() {
         return topTracks;
+    }
+    public List<IItemResult> getTopTracksAsItemResult(){
+        ArrayList<IItemResult> results = new ArrayList<>(topTracks.size());
+        for(Track t: topTracks){
+            results.add(t);
+        }
+        return results;
     }
 
     @Override

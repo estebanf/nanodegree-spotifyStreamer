@@ -2,10 +2,12 @@ package com.estebanf.nanodegree.spotifystreamer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.estebanf.nanodegree.spotifystreamer.models.Artist;
 
 
 /**
@@ -13,7 +15,8 @@ import android.view.ViewGroup;
  */
 public class TopTracksActivityFragment extends Fragment {
     private Artist artist;
-
+    private ResultListAdapter adapter;
+    private ListView lView;
     public TopTracksActivityFragment() {
     }
 
@@ -21,8 +24,11 @@ public class TopTracksActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         artist = (Artist)getActivity().getIntent().getSerializableExtra("Artist");
-        Log.v("spotifystreamer", artist.getName());
+        adapter = new ResultListAdapter(getActivity(),R.layout.list_result_item,artist.getTopTracksAsItemResult());
+        View rootView = inflater.inflate(R.layout.fragment_top_tracks,container,false);
+        lView = (ListView)rootView.findViewById(R.id.topTracksListView);
+        lView.setAdapter(adapter);
 
-        return inflater.inflate(R.layout.fragment_top_tracks, container, false);
+        return rootView;
     }
 }

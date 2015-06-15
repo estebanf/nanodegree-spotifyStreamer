@@ -1,4 +1,4 @@
-package com.estebanf.nanodegree.spotifystreamer;
+package com.estebanf.nanodegree.spotifystreamer.models;
 
 import java.io.Serializable;
 

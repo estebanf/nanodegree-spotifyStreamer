@@ -1,4 +1,4 @@
-package com.estebanf.nanodegree.spotifystreamer;
+package com.estebanf.nanodegree.spotifystreamer.models;
 
 /**
  * Created by estebanf on 6/15/15.
