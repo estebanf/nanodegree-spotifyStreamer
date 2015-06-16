@@ -36,6 +36,14 @@ class ResultListAdapter extends ArrayAdapter<IItemResult> {
             layout = (LinearLayout)convertView;
         }
         ((TextView)layout.findViewById(R.id.textView)).setText(result.getText());
+        TextView smallTextView = ((TextView)layout.findViewById(R.id.smallTextView));
+        String smallText = result.getSmallText();
+        if(smallText != null){
+            smallTextView.setText(smallText);
+        }
+        else{
+            smallTextView.setVisibility(View.INVISIBLE);
+        }
         if(result.hasThumb()){
             Picasso.with(mContext).load(result.getThumb()).into(((ImageView) layout.findViewById(R.id.imageView)));
         }

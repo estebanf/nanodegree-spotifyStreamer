@@ -7,7 +7,15 @@ import java.io.Serializable;
  */
 public class Track extends BaseItemResult implements Serializable, IItemResult{
     private String url;
+    private String album;
 
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
 
     public String getUrl() {
         return url;
@@ -30,5 +38,10 @@ public class Track extends BaseItemResult implements Serializable, IItemResult{
     @Override
     public Boolean hasThumb() {
         return hasImage();
+    }
+
+    @Override
+    public String getSmallText() {
+        return getAlbum();
     }
 }

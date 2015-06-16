@@ -6,4 +6,5 @@
     <string name="artistThumbnailWidth">300</string>
     <string name="title_activity_top_tracks">TopTracksActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_player">PlayerActivity</string>
 </resources>

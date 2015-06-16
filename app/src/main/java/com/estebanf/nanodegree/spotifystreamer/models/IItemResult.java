@@ -7,4 +7,5 @@ public interface IItemResult {
     String getText();
     String getThumb();
     Boolean hasThumb();
+    String getSmallText();
 }

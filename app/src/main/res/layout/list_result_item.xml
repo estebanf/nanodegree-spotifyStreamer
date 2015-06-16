@@ -11,13 +11,20 @@
         android:id="@+id/imageView"
         android:src="@mipmap/disc_icon"
         android:contentDescription="@string/artistIconContentDescription" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView"
-        android:layout_gravity="center_vertical"
-        android:padding="5dp" />
+        android:layout_height="fill_parent" android:orientation="vertical">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small text" android:padding="5dp" android:layout_gravity="center_vertical" android:id="@+id/smallTextView"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textView"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp" />
+    </LinearLayout>
 </LinearLayout>
