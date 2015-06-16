@@ -18,9 +18,6 @@ public class Artist extends BaseItemResult implements Serializable, IItemResult{
 
     private ArrayList<Track> topTracks;
 
-    public ArrayList<Track> getTopTracks() {
-        return topTracks;
-    }
     public List<IItemResult> getTopTracksAsItemResult(){
         ArrayList<IItemResult> results = new ArrayList<>(topTracks.size());
         for(Track t: topTracks){
@@ -89,7 +86,6 @@ public class Artist extends BaseItemResult implements Serializable, IItemResult{
             t.setSpotifyId(track.id);
             t.setImage(findImage(track.album.images));
             t.setUrl(track.preview_url);
-            t.setAlbum(track.album.name);
             topTracks.add(t);
         }
         return true;

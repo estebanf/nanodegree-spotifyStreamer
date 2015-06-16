@@ -3,8 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="search_hint">Search artist</string>
     <string name="artistIconContentDescription">Artist Icon</string>
-    <string name="artistThumbnailWidth">300</string>
-    <string name="title_activity_top_tracks">TopTracksActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_player">PlayerActivity</string>
+    <string name="title_activity_top_tracks">Artist top tracks</string>
 </resources>
