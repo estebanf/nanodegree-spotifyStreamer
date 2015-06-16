@@ -1,5 +1,8 @@
 package com.estebanf.nanodegree.spotifystreamer.models;
 
+import com.estebanf.nanodegree.spotifystreamer.App;
+import com.estebanf.nanodegree.spotifystreamer.R;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -48,7 +51,7 @@ public abstract class BaseItemResult implements Serializable{
             }
             else{
                 // Find the image with the smallest difference with target width
-                int targetWidth = 200;
+                int targetWidth = Integer.parseInt(App.context().getString(R.string.thumbTargetWidth));
                 int minPos = 0;
                 int minDifference = Integer.MAX_VALUE;
                 for(int j = 0; j < images.size(); j++){

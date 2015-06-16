@@ -1,10 +1,10 @@
 package com.estebanf.nanodegree.spotifystreamer.models;
 
-import android.util.ArrayMap;
-
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
@@ -79,8 +79,8 @@ public class Artist extends BaseItemResult implements Serializable, IItemResult{
     public boolean loadTopTracks() throws Exception{
 
         SpotifyService service = new SpotifyApi().getService();
-        ArrayMap<String,Object> queryString = new ArrayMap<>();
-        queryString.put("country","US");
+        HashMap<String,Object> queryString = new HashMap<>();
+        queryString.put(SpotifyService.COUNTRY, Locale.getDefault().getCountry());
 
         try {
             Tracks results = service.getArtistTopTrack(spotifyId, queryString);
