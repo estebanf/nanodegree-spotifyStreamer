@@ -2,6 +2,7 @@ package com.estebanf.nanodegree.spotifystreamer;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -70,6 +71,13 @@ public class SearchActivityFragment extends Fragment {
         });
         return rootView;
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        lView.setAdapter(adapter);
+    }
+
     private class AsyncLoadTopTracksTask extends AsyncTask<Artist,Void,Artist>{
         ProgressDialog waitDialog;
         @Override

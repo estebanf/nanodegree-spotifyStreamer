@@ -86,6 +86,7 @@ public class Artist extends BaseItemResult implements Serializable, IItemResult{
             t.setSpotifyId(track.id);
             t.setImage(findImage(track.album.images));
             t.setUrl(track.preview_url);
+            t.setAlbum(track.album.name);
             topTracks.add(t);
         }
         return true;
