@@ -80,13 +80,28 @@ public class SearchActivityFragment extends Fragment {
 
     private class AsyncLoadTopTracksTask extends AsyncTask<Artist,Void,Artist>{
         ProgressDialog waitDialog;
+        String errorMessage;
         @Override
         protected Artist doInBackground(Artist... params) {
             Artist currentArtist = params[0];
-            if(currentArtist.loadTopTracks()){
-                return currentArtist;
+            try{
+                if(currentArtist.loadTopTracks()){
+                    return currentArtist;
+                }
+            }
+            catch (Exception ex){
+                errorMessage = ex.getMessage();
+                waitDialog.dismiss();
+                this.cancel(true);
             }
             return null;
+        }
+
+        @Override
+        protected void onCancelled(Artist artist) {
+            super.onCancelled(artist);
+            Toast toast = Toast.makeText(getActivity(),errorMessage,Toast.LENGTH_SHORT);
+            toast.show();
         }
 
         @Override
@@ -114,10 +129,26 @@ public class SearchActivityFragment extends Fragment {
     }
     private class AsyncSearchTask extends AsyncTask<String,Void,List<Artist>>{
         ProgressDialog waitDialog;
+        String errorMessage;
         @Override
         protected List<Artist> doInBackground(String... params) {
             String term = params[0];
-            return Artist.search(term);
+            try{
+                return Artist.search(term);
+            }
+            catch (Exception ex){
+                errorMessage = ex.getMessage();
+                waitDialog.dismiss();
+                this.cancel(true);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onCancelled(List<Artist> artists) {
+            super.onCancelled(artists);
+            Toast toast = Toast.makeText(getActivity(),errorMessage,Toast.LENGTH_SHORT);
+            toast.show();
         }
 
         @Override

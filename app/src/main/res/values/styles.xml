@@ -21,7 +21,29 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">@dimen/resultListPadding</item>
+    </style>
+
+    <style name="imageThumbStyle">
+        <item name="android:layout_width">@dimen/imageThumbWidth</item>
+        <item name="android:layout_height">@dimen/imageThumbHeight</item>
+        <item name="android:contentDescription">@string/artistIconContentDescription</item>
+    </style>
+
+    <style name="smallTextStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:padding">@dimen/smallTextPadding</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="mediumTextStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:padding">@dimen/mediumTextPadding</item>
     </style>
 
 </resources>
